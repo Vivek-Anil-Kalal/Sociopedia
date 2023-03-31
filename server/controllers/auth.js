@@ -20,6 +20,7 @@ export const register = async (req, res) => {
 
         const salt = await bcrypt.genSalt()
         const passwordHash = await bcrypt.hash(password, salt)
+        console.log(passwordHash);
 
         const newUser = new User({
             firstName,
@@ -45,11 +46,17 @@ export const register = async (req, res) => {
 /** LOGGING IN */
 export const login = async (req, res) => {
     try {
+
         const { email, password } = req.body
         const user = User.findOne({ email: email })
+        console.log(user.email);
+        console.log(user.password);
+        console.log("Hello");
 
         if (!user) return res.status(400).json({ error: "User Doesn't exists..." })
-        const isMatch = await bcrypt.compare(password, user.password)
+        console.log("Hi");
+        const isMatch = await bcrypt.compare(password, user.password)            
+        console.log("Hi2");
 
         if (!isMatch) return res.status(400).json({ error: "Invalid Credentials..." })
 
@@ -59,7 +66,7 @@ export const login = async (req, res) => {
         delete user.password;
 
         res.status(200).json({ token, user });
-    } catch (error) {
-        res.status(500).json({ error: err.message })
+    } catch (err) {
+        res.status(500).json({ error: console.log(err.message) })
     }
 } 
