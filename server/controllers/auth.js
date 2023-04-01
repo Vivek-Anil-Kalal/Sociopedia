@@ -48,15 +48,20 @@ export const login = async (req, res) => {
     try {
 
         const { email, password } = req.body
-        const user = User.findOne({ email: email })
-        console.log(user.email);
-        console.log(user.password);
-        console.log("Hello");
+        const user = await User.findOne({ email: email })
 
+        /**
+         * Another Way if not using await  
+        // user.exec().then((user) => {
+        //     console.log(user); // the retrieved user object
+        //     console.log(user.email); // the retrieved user object
+        // }).catch((err) => {
+        //     // handle the error
+        // });
+
+        */
         if (!user) return res.status(400).json({ error: "User Doesn't exists..." })
-        console.log("Hi");
-        const isMatch = await bcrypt.compare(password, user.password)            
-        console.log("Hi2");
+        const isMatch = await bcrypt.compare(password, user.password)
 
         if (!isMatch) return res.status(400).json({ error: "Invalid Credentials..." })
 

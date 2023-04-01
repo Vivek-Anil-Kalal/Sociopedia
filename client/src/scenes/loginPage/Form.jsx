@@ -15,6 +15,8 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
+import ENV from '../../config.js'
+
 
 // this schema is for validation of the form 
 const registerSchema = yup.object().shape({
@@ -67,7 +69,7 @@ const Form = () => {
         formData.append('picturePath', values.picture.name)
 
         const savedUserResponse = await fetch(
-            "http://localhost:3001/auth/register",
+            `${ENV.BACKEND_URL}/auth/register`,
             {
                 method: "POST",
                 body: formData,
@@ -82,16 +84,18 @@ const Form = () => {
     }
 
     const login = async (values, onSubmitProps) => {
+
         const loggedInResponse = await fetch(
-            "http://localhost:3001/auth/login",
+            `${ENV.BACKEND_URL}/auth/login`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values),
             }
-        );
-
+        )
+        
         const loggedIn = await loggedInResponse.json();
+        console.log(loggedIn);
         onSubmitProps.resetForm();
         if (loggedIn) {
             dispatch(
