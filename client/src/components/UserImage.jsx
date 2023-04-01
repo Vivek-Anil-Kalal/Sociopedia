@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import ENV from '../../config.js'
+import ENV from 'config.js'
 
 
 const UserImage = ({ image, size = "60px" }) => {
