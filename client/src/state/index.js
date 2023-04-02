@@ -26,7 +26,7 @@ export const authSlice = createSlice({
             if (state.user) {
                 state.user.friends = action.payload.friends;
             } else {
-                console.error("User frirnds non-existent :(")
+                console.error("User friends non-existent :(")
             }
         },
         setPosts: (state, action) => {
@@ -34,14 +34,11 @@ export const authSlice = createSlice({
         },
         setPost: (state, action) => {
             const updatedPosts = state.posts.map((post) => {
-                // this if stmt means we are changing the posts array as we add new post
                 if (post._id === action.payload.post._id) return action.payload.post;
-                // if we aren't able to add new post then will simply return the current post array
-                return post
-            })
-            state.post = updatedPosts;
-        }
-
+                return post;
+            });
+            state.posts = updatedPosts;
+        },
     },
 });
 

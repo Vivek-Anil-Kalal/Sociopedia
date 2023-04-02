@@ -35,17 +35,19 @@ export const getUserFriends = async (req, res) => {
 export const addRemoveFriend = async (req, res) => {
     try {
         const { id, friendId } = req.params;
+        console.log("FriendID : " + friendId);
         const user = await User.findById(id)
         const friend = await User.findById(friendId)
+        console.log(friend);
 
         if (user.friends.includes(friendId)) {
+            console.log("Hello");
             user.friends = user.friends.filter((id) => id !== friendId)
             friend.friends = friend.friends.filter((id) => id !== id) // could get problem
         } else {
             user.friends.push(friendId)
             friend.friends.push(id)
         }
-
         await user.save()
         await friend.save()
 
@@ -62,6 +64,6 @@ export const addRemoveFriend = async (req, res) => {
         res.status(200).json(formattedFriends)
 
     } catch (err) {
-        return res.status(404).json({ error: err.message })
+        return res.status(404).json({ error: console.log(err.message) })
     }
 } 

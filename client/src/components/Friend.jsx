@@ -6,6 +6,7 @@ import { setFriends } from "state";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 import ENV from 'config.js'
+import { useEffect, useState } from "react";
 
 const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const dispatch = useDispatch();
@@ -14,6 +15,10 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const token = useSelector((state) => state.token)
     const friends = useSelector((state) => state.user.friends)
 
+    useEffect(()=>{
+        console.log(friends.length);
+    })
+
     const { palette } = useTheme();
     const primaryLight = palette.primary.light;
     const primaryDark = palette.primary.dark;
@@ -21,7 +26,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const medium = palette.neutral.medium;
 
     const isFriend = friends.find((friend) => friend._id === friendId)
-
     // api call 
     const patchFriend = async () => {
         const response = await fetch(`${ENV.BACKEND_URL}/users/${_id}/${friendId}`, {
@@ -75,4 +79,4 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     )
 }
 
-export default Friend ;
+export default Friend;
