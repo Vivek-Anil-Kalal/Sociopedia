@@ -44,16 +44,6 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             {
                 posts.map(
                     ({
-                        comments
-                    }) => {
-                        console.log(comments);
-                    }
-                )
-
-            }
-            {
-                posts.map(
-                    ({
                         _id,
                         userId,
                         firstName,

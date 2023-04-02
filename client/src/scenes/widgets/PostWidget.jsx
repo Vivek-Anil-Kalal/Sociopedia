@@ -8,7 +8,7 @@ import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WigetWrapper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 import ENV from 'config.js'
@@ -49,7 +49,6 @@ const PostWidget = ({
         const updatedPost = await response.json();
         dispatch(setPost({ post: updatedPost }))
     };
-
 
     return (
         <WidgetWrapper m="2rem 0">
