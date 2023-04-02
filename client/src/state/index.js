@@ -35,7 +35,7 @@ export const authSlice = createSlice({
         setPost: (state, action) => {
             const updatedPosts = state.posts.map((post) => {
                 // this if stmt means we are changing the posts array as we add new post
-                if (post._id === action.payload.post_id) return action.payload.post;
+                if (post._id === action.payload.post._id) return action.payload.post;
                 // if we aren't able to add new post then will simply return the current post array
                 return post
             })
