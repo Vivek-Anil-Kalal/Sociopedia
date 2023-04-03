@@ -157,7 +157,7 @@ export const posts = [
       [userIds[2], true],
       [userIds[3], true],
       [userIds[4], true],
-    ]),
+    ]), 
     comments: [
       "random comment",
       "another random comment",

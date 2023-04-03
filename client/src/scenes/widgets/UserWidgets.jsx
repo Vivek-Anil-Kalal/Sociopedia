@@ -49,7 +49,7 @@ const UserWidget = ({ userId, picturePath }) => {
         impressions,
         friends
     } = user;
-
+    
 
     return (
         <WidgetWrapper>
@@ -75,7 +75,8 @@ const UserWidget = ({ userId, picturePath }) => {
                         >
                             {firstName} {lastName}
                         </Typography>
-                        <Typography color={medium}>{friends.length} friends</Typography>
+                        {/* <Typography color={medium}>{friends ? friends.length friends:}</Typography> */}
+                        {friends? <Typography color={medium}>{friends.length} friends</Typography>:<Typography>No Friends</Typography>}
                     </Box>
                 </FlexBetween>
                 <ManageAccountsOutlined />
