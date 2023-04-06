@@ -2,3 +2,4 @@
 # You can add new friends to your friendList .
 # You can like the others posts.
 # You can read Comments .
+# Also has cool Dark/Light Theme Feature .
